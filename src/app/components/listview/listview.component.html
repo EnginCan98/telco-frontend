@@ -6,8 +6,8 @@
 <!-- <ul *ngIf="categories != undefined"></ul> -->
 <ul *ngIf="categories">    
     <ng-template ngFor let-item [ngForOf]="categories">
-      <li *ngIf="item.name.length > 3">{{ item.id }} {{ item.name }} {{ item.description }}</li>
-      <button (click)="update()">Update</button>
+      <li *ngIf="item.name">{{ item.id }} {{ item.name }} {{ item.description }}</li>
+      <button (click)="edit(item)">Edit</button>
     </ng-template>
   </ul>
   
@@ -27,9 +27,9 @@
 </ul> -->
 
   <ng-container *ngIf="changeButton == true">
-    <h1>Form-Update</h1>
-  güncellenecek olan kategori : {{ categoryToUpdate }}
-  <form [formGroup]="categoryAddForm" (submit)="update()">
+    <h1>Form-Update - {{categoryIdToUpdate}}</h1>
+  güncellenecek olan kategori : {{ categoryToUpdate.name }}
+  <form [formGroup]="categoryAddForm" (submit)="update(categoryIdToUpdate)">
   <p>{{ error }}</p>
   <input formControlName="name" type="text" placeholder="Enter name" />
   <input

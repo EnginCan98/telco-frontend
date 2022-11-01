@@ -30,8 +30,15 @@ export class CategoriesService {    //referans tipin en temel sınıfı object
       return this.httpClient.post<Category>(this.controllerUrl,category)
     }
 
-    update(category:Category):Observable<Category>{
-      return this.httpClient.put<Category>(this.controllerUrl,category)
+    // update(category:Category):Observable<Category>{
+    //   return this.httpClient.put<Category>(this.controllerUrl,category)
+    // }
+
+    update(category: Category): Observable<Category> {
+      return this.httpClient.put<Category>(
+        `${this.controllerUrl}/${category.id}`,
+        category
+      );
     }
     
     delete(id:number):Observable<void>{

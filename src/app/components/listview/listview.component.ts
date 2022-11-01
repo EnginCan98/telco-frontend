@@ -20,7 +20,9 @@ export class ListviewComponent implements OnInit {
 
   categoryIdToDelete : number=0;  //state
 
-  categoryToUpdate ?: Category[];
+  categoryIdToUpdate : number=0;
+
+  categoryToUpdate !: Category;
 
   error: string = '';
 
@@ -63,6 +65,17 @@ export class ListviewComponent implements OnInit {
     this.categoryIdToDelete = event.target.value;
   }
 
+  edit(category:Category){
+    this.changeButton=true;
+    this.categoryToUpdate = category;
+    this.categoryIdToUpdate = category.id;
+    console.log(this.categoryIdToUpdate)
+    this.categoryAddForm.patchValue({
+      name: category.name,
+      description: category.description,
+    });
+  }
+
   add(): void {
     this.changeButton=false;
     if (this.categoryAddForm.invalid) {
@@ -101,15 +114,17 @@ export class ListviewComponent implements OnInit {
     });
   }
 
-  update(){
-    this.changeButton=true;
-    this.categoryToUpdate=this.categories.filter(
-      (category: Category) => category.id
-    );
+  update(id:number){
+    // this.categoryToUpdate=this.categories.find(
+    //   (category) => category.id == id
+    // );
+    console.log(this.categoryIdToUpdate)
+
   
     const category: Category = {
-      ...this.categoryAddForm.value,
+      ...this.categoryAddForm.value,id:id
     };
+    console.log(category)
     this.categoriesService.update(category).subscribe({
       next: (response) => {
         console.info(`Category(${response.id,response.name,response.description}) has updated.`);
@@ -123,6 +138,7 @@ export class ListviewComponent implements OnInit {
         if (this.error) this.error = '';
         this.categoryAddForm.reset();
         this.getCategories();
+        this.changeButton=false;
       },
     });
   }
