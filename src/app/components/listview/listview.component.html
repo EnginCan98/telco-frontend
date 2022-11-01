@@ -1,0 +1,80 @@
+<!-- directive -->
+<!-- ngFor -->
+<!-- ngIf -->
+
+<!--  Kategori ismi 3 haneden kısa ise yazılmasın! -->
+<!-- <ul *ngIf="categories != undefined"></ul> -->
+<ul *ngIf="categories">    
+    <ng-template ngFor let-item [ngForOf]="categories">
+      <li *ngIf="item.name.length > 3">{{ item.id }} {{ item.name }} {{ item.description }}</li>
+      <button (click)="update()">Update</button>
+    </ng-template>
+  </ul>
+  
+  <ng-container *ngIf="language == 'tr'; else enMessage">
+    <div>Merhaba</div>
+  </ng-container>
+  
+  <ng-template #enMessage>
+    <div>Hello</div>
+  </ng-template>
+
+  <!-- <ul>
+    <li *ngFor="let category of categories">
+        {{category}} 
+        <button (click)="update()">Update</button>
+    </li>
+</ul> -->
+
+  <ng-container *ngIf="changeButton == true">
+    <h1>Form-Update</h1>
+  güncellenecek olan kategori : {{ categoryToUpdate }}
+  <form [formGroup]="categoryAddForm" (submit)="update()">
+  <p>{{ error }}</p>
+  <input formControlName="name" type="text" placeholder="Enter name" />
+  <input
+    formControlName="description"
+    type="text"
+    placeholder="Enter description"
+  />
+  <button type="submit">Update</button>
+</form>
+</ng-container>
+
+<ng-container *ngIf="changeButton == false">
+  <h1>Form - Add</h1>
+<form [formGroup]="categoryAddForm" (submit)="add()">
+  <p>{{ error }}</p>
+  <input formControlName="name" type="text" placeholder="Enter name" />
+  <input
+    formControlName="description"
+    type="text"
+    placeholder="Enter description"
+  />
+  <button type="submit">Add</button>
+</form>
+</ng-container>
+
+  
+<!-- Reactive Form -->
+<!-- <h1>Form - Add</h1>
+<form [formGroup]="categoryAddForm" (submit)="add()">
+  <p>{{ error }}</p>
+  <input formControlName="name" type="text" placeholder="Enter name" />
+  <input
+    formControlName="description"
+    type="text"
+    placeholder="Enter description"
+  />
+  <button type="submit">Add</button>
+</form> -->
+
+  <!-- ng Model Form -->
+  <h1>Form-Delete</h1>
+  silinecek olan id : {{ categoryIdToDelete }}
+  <div>
+  <input type="text" placeholder="id" [(ngModel)]="categoryIdToDelete"/>
+  <!-- <input type="text" placeholder="id" (change)="changeCategoryIdToDelete($event)"/>  -->
+  <button (click)="delete()">Sil</button>
+</div>
+

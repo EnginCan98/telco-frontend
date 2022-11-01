@@ -1,0 +1,31 @@
+<ul>
+    <li *ngFor="let customer of product">
+        {{customer}} 
+        <button (click)="delete(customer)">Delete</button>
+    </li>
+</ul>
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+    <label for="name">Name: </label>
+    <input id="name" type="text" formControlName="name">
+    <button type="submit">Submit</button>
+    
+</form>
+
+
+<!-- <label for="name">Name:</label> -->
+<form [formGroup]="productForm" (ngSubmit)="product">
+<input type="text"  placeholder="product" name="fname" [(ngModel)]="name" formControlName="fname">
+<br> <br>
+<button type="button" (click)="add(name)">Add</button>
+<br> <br>
+<button (click)="delete(name)">Delete</button>
+</form>
+
+<!-- <form [formGroup]="productForm">
+    <input type="text" placeholder="name">
+    <br> <br>
+    <button (click)="add(fname)">Add</button>
+    <br> <br>
+    <button (click)="delete(fname)">Delete</button>
+</form> -->

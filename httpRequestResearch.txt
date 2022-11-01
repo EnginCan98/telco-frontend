@@ -1,0 +1,23 @@
+Hyper Text Transfer Protocol(HTTP) — Hiper Metin Transfer Protokolü, internet iletişim kurallarının kısa adıdır. 
+Bir web tarayıcısından bir sunucuya gönderilen istek http protokollerine göre gerçekleştirilir. 
+Sunucu http protokolüne göre web tarayıcısına bir cevap verir. Bu cevapta header ( üst bilgi) ve body ( gövde) bilgisi bulunur. 
+Header alınan bilginin türünün barındırıldığı kısımdır. 
+Bu tür bilgisinin içinde içerik tipi, server tipi, Get, Put, Post, içerik boyutu gibi iletişim yöntemleri ve bilgiler bulunur.
+
+POST : Sunucuya veri göndermek için kullanılır, bodyRequest(body : fromdata, parametre, multipart : resim yada video gönderme)
+
+PUT : Sunucuya veri göndermek için ama gönderilen veriler ile bir dosya yaratmak için kullanılır. Eğer dosya sunucuda varsa üzerinde değişiklik yapar.
+
+DELETE : Sunucudaki kaynağı silmek için kullanılır. Silme işlemi yaparken kaynağı sorgulamadan bu işlemi yapar
+
+GET : Sunucudan dosya / veri almak için kullanılır
+
+Head : Aslında get methodu ile aynı işi yapar gönderilen veri aynıdır sunucuda olan işlemler aynıdır sunucudaki cevabı dönerken header kısmını döner
+
+Trace : Sunucuyu kontrol amaçlı kullanılır bunun dışında başka bir sunucu üzerinde işlem yapmak için kullanılır
+
+Options : Sunucunun hangi methodlara kabul ettigini öğrenmek için kullanılır.
+
+Connection : Sunucuyu proxy gibi kullanabilmemizi sağlar yani sunucunun başka bir sunucuya istek yapmasını saglayabiliriz.
+
+Path : Bu metod bir kaynağa istediğiniz küçük çaplı değişimi yapmanızı sağlar. örnegin sadece adamın epostasını değiştirmek istiyoruz.
